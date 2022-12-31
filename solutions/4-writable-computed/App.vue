@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { ref, computed } from 'vue';
 
-const count = ref(1)
-const plusOne = computed(() => count.value + 1)
-
+const count = ref(1);
+const plusOne = computed({
+  get() {
+    return count.value + 1;
+  },
+  set(v) {
+    count.value = v - 1;
+  },
+});
 /**
  * Make the `plusOne` writable.
  * So that we can get the result `plusOne` to be 3, and `count` to be 2.
-*/
+ */
 
-plusOne.value++
-
+// plusOne.value = plusOne.value + 1;
+plusOne.value++;
 </script>
 
 <template>
