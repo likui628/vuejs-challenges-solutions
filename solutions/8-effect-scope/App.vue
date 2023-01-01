@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { ref, computed, watch, watchEffect } from "vue"
+import { ref, computed, watch, watchEffect, effectScope } from 'vue';
 
-const counter = ref(1)
-const doubled = computed(() => counter.value * 2)
+const counter = ref(1);
+const doubled = computed(() => counter.value * 2);
 
 // use the `effectScope` API to make these effects stop together after being triggered once
+const scope = effectScope();
 
-watch(doubled, () => console.log(doubled.value))
-watchEffect(() => console.log(`Count: ${doubled.value}`))
+scope.run(() => {
+  watch(doubled, () => console.log(doubled.value));
+  watchEffect(() => console.log(`Count: ${doubled.value}`));
+});
 
-counter.value = 2
+counter.value = 2;
 
 setTimeout(() => {
-  counter.value = 4
-})
-
+  counter.value = 4;
+  scope.stop();
+});
 </script>
 
 <template>
