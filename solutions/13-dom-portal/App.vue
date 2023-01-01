@@ -1,10 +1,10 @@
 <script setup>
-
-const msg = "Hello World"
-
+const msg = 'Hello World';
 </script>
 
 <template>
   <!-- Renders it to a child element of the `body` -->
-  <span>{{ msg }}</span>
+  <Teleport to="body">
+    <span>{{ msg }}</span>
+  </Teleport>
 </template>
