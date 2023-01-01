@@ -1,6 +1,12 @@
 <script setup>
 defineProps({
-  type: {},
+  type: {
+		type:String,
+  	default: 'default',
+  	validator:(value)=>{
+  		return ['primary', 'ghost', 'dashed', 'link', 'text', 'defalut'].includes(value)
+		}
+  }
 })
 </script>
 
