@@ -1,18 +1,24 @@
-<script setup lang='ts'>
-
-import { ref } from "vue"
+<script setup lang="ts">
+import { ref } from 'vue';
 
 /**
  * Implement a custom directive
  * Create a two-way binding on a form input element
  *
-*/
+ */
 const VOhModel = {
+  created(el) {
+    el.addEventListener('input', (e) => {
+      let domValue = el.value;
+      value.value = domValue;
+    });
+  },
+  mounted(el, { value }, vnode, prevVnode) {
+    el.value = value == null ? '' : value;
+  },
+};
 
-}
-
-const value = ref("Hello Vue.js")
-
+const value = ref('Hello Vue.js');
 </script>
 
 <template>
